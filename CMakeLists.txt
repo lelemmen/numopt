@@ -4,8 +4,12 @@ cmake_minimum_required(VERSION 3.9 FATAL_ERROR)
 
 # Specify the project, its version and the used language
 project(numopt
-        VERSION 1.5.0
+        VERSION 1.5.1
         LANGUAGES CXX)
+
+# Option to support MKL builds
+option(USE_MKL "Use the Intel Math Kernel Libraries" OFF)
+
 
 # To enable the C++11 standard, we have to add flags like -std=gnu+11 or so. CMake can take care of this:
 set(CMAKE_CXX_STANDARD 11)
@@ -15,7 +19,7 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif()
 set(CMAKE_CXX_FLAGS_DEBUG "-g")
-set(CMAKE_CXX_FLAGS_RELEASE "-O3")
+set(CMAKE_CXX_FLAGS_RELEASE "-O2 -march=native")
 
 
 # Set CMake variables
